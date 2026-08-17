@@ -29,7 +29,7 @@
 * { box-sizing: border-box; }
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4rem;
+  scroll-padding-top: 0;
 }
 
 body {
@@ -78,7 +78,7 @@ button { font: inherit; }
   background-size: 19px 19px, 27px 27px, 100% 100%;
 }
 
-.torn-top { clip-path: polygon(0 3%, 5% 1%, 11% 3%, 17% 1%, 24% 3%, 31% 1%, 38% 3%, 45% 1%, 52% 3%, 60% 1%, 67% 3%, 75% 1%, 83% 3%, 91% 1%, 100% 3%, 100% 100%, 0 100%); }
+.torn-top { clip-path: polygon(0 1.25rem, 5% 0.4rem, 11% 1.25rem, 17% 0.4rem, 24% 1.25rem, 31% 0.4rem, 38% 1.25rem, 45% 0.4rem, 52% 1.25rem, 60% 0.4rem, 67% 1.25rem, 75% 0.4rem, 83% 1.25rem, 91% 0.4rem, 100% 1.25rem, 100% 100%, 0 100%); }
 .torn-bottom { clip-path: polygon(0 0, 100% 0, 100% 97%, 92% 99%, 84% 97%, 76% 99%, 68% 97%, 60% 99%, 52% 97%, 44% 99%, 36% 97%, 28% 99%, 20% 97%, 12% 99%, 5% 97%, 0 99%); }
 
 .stamp-ring {
@@ -108,67 +108,95 @@ button { font: inherit; }
 .lined-paper { background-image: repeating-linear-gradient(to bottom, transparent 0 30px, rgb(7 53 111 / 10%) 30px 31px); }
 
 .hero-shell {
-  min-height: max(calc(100svh - 4rem), 42rem);
+  height: clamp(20rem, 85vw, 24rem);
+  min-height: 0;
 }
 
 .hero-content {
-  min-height: inherit;
+  height: 100%;
+  min-height: 0;
 }
 
 .hero-copy {
   position: relative;
-  width: min(84vw, 20rem);
-  padding-top: clamp(2rem, 5svh, 3.5rem);
+  width: min(58vw, 15rem);
+  padding-top: clamp(5rem, 18vw, 6.5rem);
+  padding-bottom: 0;
 }
 
 .hero-title {
-  font-size: clamp(3.75rem, 16vw, 4.25rem);
+  font-size: clamp(2.9rem, 12vw, 3.5rem);
 }
 
 .hero-artwork {
-  top: 34%;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  position: absolute;
+  inset: 0;
+  height: auto;
   background-image: url("/europe-hero-768.webp");
-  background-position: 37% bottom;
+  background-position: left center;
   background-repeat: no-repeat;
   background-size: auto 100%;
 }
 
 .hero-mint-haze {
-  height: 4.5rem;
+  height: 3.5rem;
 }
 
-@media (min-width: 640px) {
+.destination-scroller {
+  scrollbar-color: rgb(7 53 111 / 28%) transparent;
+  scrollbar-width: thin;
+}
+
+.destination-scroller::-webkit-scrollbar {
+  height: 0.35rem;
+}
+
+.destination-scroller::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgb(7 53 111 / 28%);
+}
+
+.destination-scroller::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (min-width: 480px) {
   .hero-shell {
-    min-height: max(calc(100svh - 4rem), 46rem);
+    height: clamp(20rem, 66.667vw, 42.5rem);
+    min-height: 0;
+  }
+
+  .hero-content {
+    height: 100%;
+    min-height: 0;
   }
 
   .hero-copy {
-    width: min(48vw, 22rem);
-    padding-top: clamp(3rem, 6svh, 4.5rem);
+    width: min(39vw, 20rem);
+    padding-top: clamp(6rem, 14vw, 8rem);
+    padding-bottom: 0;
   }
 
   .hero-title {
-    font-size: clamp(4rem, 7.5vw, 4.75rem);
+    font-size: clamp(3.25rem, 8vw, 4.5rem);
   }
 
   .hero-artwork {
-    top: 33%;
     background-image: url("/europe-hero.webp");
-    background-position: 43% bottom;
+    background-position: center top;
+    background-size: 100% auto;
   }
 
   .hero-mint-haze {
-    height: 7rem;
+    height: 5rem;
   }
 }
 
 @media (min-width: 1024px) {
   .hero-shell,
   .hero-content {
-    min-height: calc(100svh - 4rem);
+    height: auto;
+    min-height: 100svh;
   }
 
   .hero-copy {
@@ -183,8 +211,8 @@ button { font: inherit; }
 
   .hero-artwork {
     inset: 0;
-    background-position: right center;
-    background-size: max(108vw, 150svh) auto;
+    background-position: 60% top;
+    background-size: 116% auto;
   }
 
   .hero-mint-haze {

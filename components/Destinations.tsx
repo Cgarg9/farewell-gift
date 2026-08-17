@@ -207,11 +207,18 @@ export function Destinations() {
           title="12 Months, 12 Destinations"
           description="A dotted route through twelve places, with two city-specific ideas waiting inside every card."
         />
+        <p className="-mt-5 mb-4 flex items-center justify-center gap-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-navy/65 sm:hidden">
+          Swipe to explore all 12 <ArrowRight size={13} aria-hidden="true" />
+        </p>
         <div className="absolute -left-5 bottom-5 top-28 hidden w-3 border-l-2 border-dashed border-navy/45 lg:block" aria-hidden="true" />
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div
+          className="destination-scroller -mx-5 grid auto-cols-[82%] grid-flow-col gap-4 overflow-x-auto overscroll-x-contain scroll-px-5 snap-x snap-mandatory touch-pan-x px-5 pb-5 sm:mx-0 sm:auto-cols-auto sm:grid-flow-row sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:overscroll-auto sm:scroll-px-0 sm:snap-none sm:px-0 sm:pb-0 lg:grid-cols-3 xl:grid-cols-4"
+          role="region"
+          aria-label="Twelve monthly destination cards"
+        >
           {destinations.map((destination, index) => (
-            <article key={destination.city} className="min-w-0">
+            <article key={destination.city} className="min-w-0 snap-start">
               <button
                 type="button"
                 onClick={(event) => openDestination(index, event.currentTarget)}
