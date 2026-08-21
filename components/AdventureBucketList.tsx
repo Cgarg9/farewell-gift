@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect, useState, type ComponentType } from "react";
-import { AudioLines, Backpack, GraduationCap, HandHeart, Languages, NotebookPen, Users, UtensilsCrossed } from "lucide-react";
+import { Coffee, CookingPot, Gift, Hammer, Languages, TreePine, Users, Wine } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 
 type Goal = { Icon: ComponentType<{ size?: number; strokeWidth?: number }>; label: string; tint: string };
 const goals: Goal[] = [
-  { Icon: GraduationCap, label: "Join a student club", tint: "bg-[#e1f1ee]" },
   { Icon: Users, label: "Make a new international friend", tint: "bg-[#e2edf8]" },
-  { Icon: UtensilsCrossed, label: "Host a dinner", tint: "bg-[#fff0d3]" },
-  { Icon: NotebookPen, label: "Keep a one-line journal", tint: "bg-[#f9e5dc]" },
-  { Icon: Languages, label: "Learn twenty local phrases", tint: "bg-[#e6eff8]" },
-  { Icon: Backpack, label: "Take a brave solo day trip", tint: "bg-[#f5e4c4]" },
-  { Icon: HandHeart, label: "Share something from home", tint: "bg-[#e4f1dc]" },
-  { Icon: AudioLines, label: "Record a voice note for future you", tint: "bg-[#e5e4f6]" },
+  { Icon: CookingPot, label: "Host a dinner & cook for your friends", tint: "bg-[#fff0d3]" },
+  { Icon: Coffee, label: "Become a regular at a cafe", tint: "bg-[#f9e5dc]" },
+  { Icon: TreePine, label: "Have a solo picnic in a local park", tint: "bg-[#e4f1dc]" },
+  { Icon: Languages, label: "Order food in the local language", tint: "bg-[#e6eff8]" },
+  { Icon: Gift, label: "Visit a Christmas market", tint: "bg-[#f5e4c4]" },
+  { Icon: Wine, label: "Build a cheeseboard & have a wine night", tint: "bg-[#e5e4f6]" },
+  { Icon: Hammer, label: "Build a piece of furniture for your home", tint: "bg-[#e1f1ee]" },
 ];
 
 export function AdventureBucketList() {
@@ -23,7 +23,7 @@ export function AdventureBucketList() {
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       try {
-        const saved = window.localStorage.getItem("europe-adventure-bucket-list");
+        const saved = window.localStorage.getItem("europe-adventure-bucket-list-v2");
         if (saved) setChecked(JSON.parse(saved) as number[]);
       } catch {
         // The checklist still works when storage is unavailable.
@@ -38,7 +38,7 @@ export function AdventureBucketList() {
   useEffect(() => {
     if (!hydrated) return;
     try {
-      window.localStorage.setItem("europe-adventure-bucket-list", JSON.stringify(checked));
+      window.localStorage.setItem("europe-adventure-bucket-list-v2", JSON.stringify(checked));
     } catch {
       // Keep the in-memory interaction available without persistence.
     }
@@ -56,7 +56,7 @@ export function AdventureBucketList() {
           {goals.map(({ Icon, label, tint }, index) => {
             const active = checked.includes(index);
             return (
-              <button key={label} type="button" aria-pressed={active} onClick={() => toggle(index)} className={`relative min-h-40 rounded-2xl border p-4 text-left shadow-[0_8px_20px_rgb(7_53_111_/_7%)] transition duration-200 hover:-translate-y-1 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-navy ${active ? "border-navy bg-navy text-white" : "border-navy/10 bg-white"}`}>
+              <button key={label} type="button" aria-pressed={active} onClick={() => toggle(index)} className={`relative min-h-48 rounded-2xl border p-4 text-left shadow-[0_8px_20px_rgb(7_53_111_/_7%)] transition duration-200 hover:-translate-y-1 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-navy ${active ? "border-navy bg-navy text-white" : "border-navy/10 bg-white"}`}>
                 <span className={`absolute left-3 top-3 grid size-6 place-items-center rounded-full border text-xs font-extrabold ${active ? "border-sunshine bg-sunshine text-navy" : "border-navy/35"}`} aria-hidden="true">{active ? "✓" : ""}</span>
                 <span className="absolute bottom-3 left-4 display-font text-xl font-bold opacity-75">{index + 1}</span>
                 <span className={`mx-auto grid size-14 place-items-center rounded-2xl ${active ? "bg-white/12" : tint}`}><Icon size={31} strokeWidth={1.6} /></span>

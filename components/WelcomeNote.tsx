@@ -9,7 +9,7 @@ export function WelcomeNote() {
       <div className="relative mx-auto max-w-3xl text-center">
         <p className="mb-2 text-[10px] font-extrabold uppercase tracking-[0.28em] text-coral">Made with love, packed for Europe</p>
         <h2 className="display-font text-[clamp(2.75rem,6vw,4rem)] font-bold leading-[0.95] text-navy">
-          A little something for your big adventure
+          A little something for your big European adventure
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-7 text-navy/72 sm:text-base">
           This is one small place to keep the laughs we never want to forget, the courage you can borrow whenever you need it, and a few bright ideas for every month of the year ahead.

@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 test("the complete farewell website follows the responsive rebuild brief", async () => {
-  const [page, hero, bucketList, destinations, openWhen, messages, farewell, styles] = await Promise.all([
+  const [page, hero, bucketList, destinations, openWhen, messages, farewell, closing, styles] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../components/Hero.tsx", import.meta.url), "utf8"),
     readFile(new URL("../components/AdventureBucketList.tsx", import.meta.url), "utf8"),
@@ -11,6 +11,7 @@ test("the complete farewell website follows the responsive rebuild brief", async
     readFile(new URL("../components/OpenWhen.tsx", import.meta.url), "utf8"),
     readFile(new URL("../components/MessagesFromHome.tsx", import.meta.url), "utf8"),
     readFile(new URL("../components/FarewellNote.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/ClosingWish.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
   ]);
 
@@ -28,10 +29,25 @@ test("the complete farewell website follows the responsive rebuild brief", async
 
   for (const component of requiredComponents) assert.match(page, new RegExp(component));
   assert.match(page, /Skip to content/);
-  assert.match(hero, /Your<br \/>Adventure<br \/>Begins/);
+  assert.match(hero, /Your<br \/>Europe<br \/>Adventure<br \/>Begins/);
   assert.match(styles, /europe-hero(?:-768)?\.webp/);
   assert.doesNotMatch(page, /SiteHeader/);
   assert.match(bucketList, /localStorage/);
+  assert.match(bucketList, /europe-adventure-bucket-list-v2/);
+  for (const idea of [
+    "Make a new international friend",
+    "Host a dinner & cook for your friends",
+    "Become a regular at a cafe",
+    "Have a solo picnic in a local park",
+    "Order food in the local language",
+    "Visit a Christmas market",
+    "Build a cheeseboard & have a wine night",
+    "Build a piece of furniture for your home",
+  ]) assert.ok(bucketList.includes(idea));
+  for (const oldIdea of ["Join a student club", "Keep a one-line journal", "Learn twenty local phrases", "Take a brave solo day trip"]) {
+    assert.doesNotMatch(bucketList, new RegExp(oldIdea));
+  }
+  assert.match(bucketList, /min-h-48/);
   assert.match(destinations, /title="12 Months, 12 Destinations"/);
   assert.match(destinations, /overflow-x-auto/);
   assert.match(destinations, /snap-x/);
@@ -40,10 +56,18 @@ test("the complete farewell website follows the responsive rebuild brief", async
   assert.match(destinations, /sm:grid-cols-2/);
   assert.match(destinations, /sm:overflow-visible/);
   assert.match(destinations, /aria-label="Twelve monthly destination cards"/);
+  for (const city of ["paris", "amsterdam", "prague", "vienna", "budapest", "venice", "rome", "barcelona", "lisbon", "interlaken", "copenhagen", "tromso"]) {
+    assert.match(destinations, new RegExp(`/destinations/${city}\\.webp`));
+    await access(new URL(`../public/destinations/${city}.webp`, import.meta.url));
+  }
+  assert.doesNotMatch(destinations, /Landmark photography|Wikimedia Commons contributors/);
+  assert.match(destinations, /alt=\{selected\.imageAlt\}/);
+  assert.doesNotMatch(destinations, /europe-hero-768\.webp/);
   assert.match(destinations, /dialog|aria-modal|showModal/);
   assert.match(openWhen, /aria-expanded/);
   assert.match(messages, /Messages From Home/);
   assert.doesNotMatch(farewell, /will go here|placeholder/i);
+  assert.doesNotMatch(closing, /Go explore &amp; make memories|href="#top"/);
   assert.doesNotMatch(page, /PlaneIntro/);
   assert.doesNotMatch(hero, /europe-plane|Get ready for an amazing year/);
   assert.doesNotMatch(hero, /Go explore/);
