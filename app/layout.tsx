@@ -8,7 +8,7 @@ import "@fontsource/nunito/700.css";
 import "@fontsource/nunito/800.css";
 import "./globals.css";
 
-const title = "Your Adventure Begins | The Great European Adventure";
+const title = "Your Europe Adventure Begins | The Great European Adventure";
 const description = "A handmade farewell gift for a very big European adventure.";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       type: "website",
       url: origin,
-      images: [{ url: socialImage, width: 1200, height: 628, alt: "Your Adventure Begins over a watercolor map of Europe" }],
+      images: [{ url: socialImage, width: 1200, height: 628, alt: "Your Europe Adventure Begins over a watercolor map of Europe" }],
     },
     twitter: {
       card: "summary_large_image",

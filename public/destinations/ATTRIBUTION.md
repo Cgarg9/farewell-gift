@@ -1,0 +1,16 @@
+# Destination image credits
+
+The destination photographs were resized, re-encoded as WebP files, and displayed with CSS cropping for this website. Their original creators and licenses are listed below. Each adapted image remains available under its source license.
+
+- **Paris** — [Eiffel Tower and Pont Alexandre III at night](https://commons.wikimedia.org/wiki/File:Eiffel_Tower_and_Pont_Alexandre_III_at_night.jpg) by Getfunky Paris, licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+- **Amsterdam** — [Colorful canal houses at golden hour in Damrak avenue Amsterdam the Netherlands](https://commons.wikimedia.org/wiki/File:Colorful_canal_houses_at_golden_hour_in_Damrak_avenue_Amsterdam_the_Netherlands.jpg) by Basile Morin, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- **Prague** — [North view of Charles Bridge from Mánesův most, Prague 20160808 1](https://commons.wikimedia.org/wiki/File:North_view_of_Charles_Bridge_from_M%C3%A1nes%C5%AFv_most,_Prague_20160808_1.jpg) by DXR, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- **Vienna** — [Schoenbrunn Palace as seen from Neptune Fountain, September 2016](https://commons.wikimedia.org/wiki/File:Schoenbrunn_Palace_as_seen_from_Neptune_Fountain,_September_2016.jpg) by Martin Falbisoner, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- **Budapest** — [Hungarian Parliament Building 2023-9](https://commons.wikimedia.org/wiki/File:Hungarian_Parliament_Building_2023-9.jpg) by Pierre Blaché, released under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+- **Venice** — [Panorama of Canal Grande and Ponte di Rialto, Venice - September 2017](https://commons.wikimedia.org/wiki/File:Panorama_of_Canal_Grande_and_Ponte_di_Rialto,_Venice_-_September_2017.jpg) by Martin Falbisoner, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- **Rome** — [Colosseum in Rome, Italy - April 2007](https://commons.wikimedia.org/wiki/File:Colosseum_in_Rome,_Italy_-_April_2007.jpg) by Diliff, licensed under [CC BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/).
+- **Barcelona** — [Sagrada Familia March 2015-10a](https://commons.wikimedia.org/wiki/File:Sagrada_Familia_March_2015-10a.jpg) by Alvesgaspar, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- **Lisbon** — [Yellow tram in Lisbon, Portugal](https://commons.wikimedia.org/wiki/File:Yellow_tram_in_Lisbon,_Portugal.jpg) by Bex Walton, licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+- **Interlaken** — [Interlaken Landscape](https://commons.wikimedia.org/wiki/File:Interlaken_Landscape.jpg) by André Schakkal, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- **Copenhagen** — [Nyhavn Copenhagen](https://commons.wikimedia.org/wiki/File:Nyhavn_Copenhagen.jpg) by Matteosalvador, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- **Tromsø** — [Northern lights in Tromso](https://commons.wikimedia.org/wiki/File:Northern_lights_in_Tromso.jpg) by Ddgfoto, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ArrowRight, Clock3, NotebookText, UtensilsCrossed, X } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
 
@@ -11,6 +12,8 @@ type Destination = {
   itinerary: { time: string; plan: string }[];
   food: string;
   note: string;
+  image: string;
+  imageAlt: string;
   imagePosition: string;
 };
 
@@ -26,7 +29,9 @@ const destinations: Destination[] = [
     ],
     food: "Try a butter-rich jambon-beurre and share a box of jewel-colored macarons.",
     note: "Reserve the Louvre ahead, but leave one whole hour unplanned for getting happily lost.",
-    imagePosition: "48% 50%",
+    image: "/destinations/paris.webp",
+    imageAlt: "Eiffel Tower glowing beside Pont Alexandre III and the Seine at dusk",
+    imagePosition: "45% 45%",
   },
   {
     city: "Amsterdam",
@@ -39,7 +44,9 @@ const destinations: Destination[] = [
     ],
     food: "Order warm apple pie with whipped cream, then sample a cone of crisp Dutch fries.",
     note: "Follow the cycle lights and lanes carefully; locals move quickly even when the city feels dreamy.",
-    imagePosition: "66% 22%",
+    image: "/destinations/amsterdam.webp",
+    imageAlt: "Narrow canal houses lining Damrak in Amsterdam",
+    imagePosition: "50% 50%",
   },
   {
     city: "Prague",
@@ -52,7 +59,9 @@ const destinations: Destination[] = [
     ],
     food: "Warm up with bramboráky potato pancakes and a cinnamon-dusted trdelník to share.",
     note: "Wear shoes that love cobblestones; the best viewpoints nearly always involve a hill.",
-    imagePosition: "77% 49%",
+    image: "/destinations/prague.webp",
+    imageAlt: "Charles Bridge spanning the Vltava beneath Prague's Old Town skyline",
+    imagePosition: "52% 54%",
   },
   {
     city: "Vienna",
@@ -65,7 +74,9 @@ const destinations: Destination[] = [
     ],
     food: "Pair a slice of apricot-glazed Sachertorte with a melange in a traditional coffeehouse.",
     note: "Vienna rewards slow afternoons—order one more coffee and let the room tell its stories.",
-    imagePosition: "72% 58%",
+    image: "/destinations/vienna.webp",
+    imageAlt: "Schönbrunn Palace framed by the Neptune Fountain in Vienna",
+    imagePosition: "50% 50%",
   },
   {
     city: "Budapest",
@@ -78,7 +89,9 @@ const destinations: Destination[] = [
     ],
     food: "Look for a bowl of paprika-rich goulash and finish with warm chimney cake.",
     note: "Bring flip-flops and a small towel for the baths, and validate every transit ticket.",
-    imagePosition: "89% 56%",
+    image: "/destinations/budapest.webp",
+    imageAlt: "Hungarian Parliament Building illuminated beside the Danube at night",
+    imagePosition: "50% 22%",
   },
   {
     city: "Venice",
@@ -91,7 +104,9 @@ const destinations: Destination[] = [
     ],
     food: "Try baccalà mantecato on toast and a paper cone of lagoon-fresh fried seafood.",
     note: "The wrong turn is part of Venice; save the map for when you truly need to catch a train.",
-    imagePosition: "53% 76%",
+    image: "/destinations/venice.webp",
+    imageAlt: "Rialto Bridge crossing Venice's Grand Canal",
+    imagePosition: "64% 64%",
   },
   {
     city: "Rome",
@@ -104,7 +119,9 @@ const destinations: Destination[] = [
     ],
     food: "Choose a classic cacio e pepe, followed by pistachio gelato from a proper gelateria.",
     note: "Book major sights in advance and carry a light scarf for churches and breezy evenings.",
-    imagePosition: "43% 88%",
+    image: "/destinations/rome.webp",
+    imageAlt: "The illuminated Colosseum in Rome at blue hour",
+    imagePosition: "48% 46%",
   },
   {
     city: "Barcelona",
@@ -117,7 +134,9 @@ const destinations: Destination[] = [
     ],
     food: "Order pan con tomate, patatas bravas, and a thick slice of tortilla for the table.",
     note: "Dinner starts late here; use the long golden evening for one more neighborhood wander.",
-    imagePosition: "27% 76%",
+    image: "/destinations/barcelona.webp",
+    imageAlt: "Ornate ceiling and columns inside Barcelona's Sagrada Família",
+    imagePosition: "50% 50%",
   },
   {
     city: "Lisbon",
@@ -130,7 +149,9 @@ const destinations: Destination[] = [
     ],
     food: "Dust a warm pastel de nata with cinnamon and try grilled sardines when they are in season.",
     note: "The hills are real—pack grippy shoes and let the funicular rescue tired legs.",
-    imagePosition: "14% 82%",
+    image: "/destinations/lisbon.webp",
+    imageAlt: "A yellow Carris tram on a Lisbon street",
+    imagePosition: "50% 58%",
   },
   {
     city: "Interlaken",
@@ -143,7 +164,9 @@ const destinations: Destination[] = [
     ],
     food: "Share rösti with melted mountain cheese and save room for a square of Swiss chocolate.",
     note: "Mountain weather changes quickly; carry a light layer even when the valley begins sunny.",
-    imagePosition: "58% 63%",
+    image: "/destinations/interlaken.webp",
+    imageAlt: "A green meadow beneath the mountains surrounding Interlaken",
+    imagePosition: "50% 48%",
   },
   {
     city: "Copenhagen",
@@ -156,7 +179,9 @@ const destinations: Destination[] = [
     ],
     food: "Build an open-faced smørrebrød lunch and pause later for a cardamom bun.",
     note: "Signal before turning on a bike and step out of the cycle lane before taking photos.",
-    imagePosition: "75% 17%",
+    image: "/destinations/copenhagen.webp",
+    imageAlt: "Colorful waterfront houses and boats along Nyhavn in Copenhagen",
+    imagePosition: "50% 48%",
   },
   {
     city: "Tromsø",
@@ -169,7 +194,9 @@ const destinations: Destination[] = [
     ],
     food: "Warm up with creamy fish soup and a cinnamon skolebrød from a local bakery.",
     note: "The aurora keeps its own schedule; plan a few nights and celebrate the sky even if it stays quiet.",
-    imagePosition: "89% 14%",
+    image: "/destinations/tromso.webp",
+    imageAlt: "Northern lights above a dark forest near Tromsø",
+    imagePosition: "48% 36%",
   },
 ];
 
@@ -225,15 +252,17 @@ export function Destinations() {
                 aria-haspopup="dialog"
                 className="group w-full rounded-xl border border-[#d5cbae] bg-[#fff9e9] p-3 text-left shadow-[0_10px_25px_rgb(7_53_111_/_12%)] transition duration-200 hover:-translate-y-1 hover:rotate-[0.3deg] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-navy motion-reduce:transform-none"
               >
-                <span
-                  className="relative block aspect-[1.38] overflow-hidden rounded-lg bg-cream bg-cover bg-no-repeat"
-                  style={{
-                    backgroundImage: 'url("/europe-hero-768.webp")',
-                    backgroundPosition: destination.imagePosition,
-                    backgroundSize: "245%",
-                  }}
-                  aria-hidden="true"
-                >
+                <span className="relative block aspect-[1.38] overflow-hidden rounded-lg bg-cream" aria-hidden="true">
+                  <Image
+                    src={destination.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 639px) 82vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw"
+                    loading="lazy"
+                    decoding="async"
+                    className="object-cover transition duration-500 group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
+                    style={{ objectPosition: destination.imagePosition }}
+                  />
                   <span className="absolute inset-0 bg-gradient-to-t from-navy/10 via-transparent to-white/10 transition duration-200 group-hover:bg-transparent" />
                   <span className="absolute left-2 top-2 grid size-9 place-items-center rounded-full border border-white/70 bg-[#fffdf7]/90 text-sm font-extrabold text-navy shadow-sm">
                     {index + 1}
@@ -270,14 +299,15 @@ export function Destinations() {
       >
         {selected ? (
           <div>
-            <div
-              className="relative h-44 bg-cover bg-no-repeat sm:h-52"
-              style={{
-                backgroundImage: 'url("/europe-hero-768.webp")',
-                backgroundPosition: selected.imagePosition,
-                backgroundSize: "190%",
-              }}
-            >
+            <div className="relative h-44 overflow-hidden bg-cream sm:h-52">
+              <Image
+                src={selected.image}
+                alt={selected.imageAlt}
+                fill
+                sizes="(max-width: 767px) 92vw, 44rem"
+                className="object-cover"
+                style={{ objectPosition: selected.imagePosition }}
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-[#fffdf7] via-transparent to-navy/5" />
               <button
                 type="button"

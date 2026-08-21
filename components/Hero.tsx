@@ -5,7 +5,7 @@ export function Hero() {
     <section id="landing" className="hero-shell paper-texture relative isolate overflow-hidden bg-cream">
       <div className="hero-content relative z-20 mx-auto max-w-[1360px] px-5 sm:px-8 lg:px-12 xl:px-16">
         <div className="hero-copy flex flex-col items-start">
-          <h1 className="hero-title display-font font-bold leading-[0.78] tracking-[-0.045em] text-navy">Your<br />Adventure<br />Begins</h1>
+          <h1 className="hero-title display-font font-bold leading-[0.78] tracking-[-0.045em] text-navy">Your<br />Europe<br />Adventure<br />Begins</h1>
           <div className="mt-7 hidden w-full max-w-[17rem] items-center justify-between text-navy lg:flex" aria-hidden="true">
             <div className="-rotate-6 border-[5px] border-white bg-[#dfeee8] p-3 shadow-[0_8px_18px_rgb(7_53_111_/_14%)]">
               <Camera size={28} />
