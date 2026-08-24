@@ -1,6 +1,6 @@
 "use client";
 
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions -- The labeled carousel region intentionally handles swipe and Arrow key navigation. */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex -- The labeled carousel region is intentionally focusable and handles swipe plus Arrow key navigation. */
 
 import {
   useCallback,
@@ -16,44 +16,44 @@ import { SectionHeading } from "./SectionHeading";
 
 const memories = [
   {
-    caption: "The ridiculous laughs",
-    note: "Kitchen floor · 1:14 a.m.",
-    objectPosition: "18% 42%",
+    src: "/memories/memory-01-celebrating-highs.webp",
+    alt: "Two friends smiling for a selfie at a restaurant",
+    caption: "To celebrating the highs",
     rotation: "-rotate-[1.5deg]",
     tape: "bg-coral/80",
   },
   {
-    caption: "The long conversations",
-    note: "Same café, three cold coffees",
-    objectPosition: "34% 58%",
+    src: "/memories/memory-02-annual-traditions.webp",
+    alt: "Two friends posing together against a mountain landscape",
+    caption: "Upholding annual traditions",
     rotation: "rotate-[1deg]",
     tape: "bg-[#3974b9]/75",
   },
   {
-    caption: "The spontaneous plans",
-    note: "No itinerary, somehow perfect",
-    objectPosition: "52% 38%",
+    src: "/memories/memory-03-belly-laughs.webp",
+    alt: "Two friends laughing in a close-up outdoor selfie",
+    caption: "Loud belly laughs",
     rotation: "-rotate-[0.75deg]",
     tape: "bg-[#55b9a1]/80",
   },
   {
-    caption: "The ordinary days",
-    note: "Our favorite kind of memory",
-    objectPosition: "68% 58%",
+    src: "/memories/memory-04-across-the-globe.webp",
+    alt: "Two friends smiling together outside a city building",
+    caption: "Visiting each other across the globe",
     rotation: "rotate-[1.5deg]",
     tape: "bg-sunshine/80",
   },
   {
-    caption: "The goodbye dinner",
-    note: "One table, far too many stories",
-    objectPosition: "84% 38%",
+    src: "/memories/memory-05-surviving-lows.webp",
+    alt: "Two friends dressed for a celebration at home",
+    caption: "Surviving the lows",
     rotation: "-rotate-[1deg]",
     tape: "bg-coral/80",
   },
   {
-    caption: "The postcard promise",
-    note: "Write home — even the messy bits",
-    objectPosition: "58% 80%",
+    src: "/memories/memory-06-discovering-family.webp",
+    alt: "Two friends smiling together during a night out",
+    caption: "To discovering family",
     rotation: "rotate-[0.75deg]",
     tape: "bg-[#3974b9]/75",
   },
@@ -122,19 +122,24 @@ export function MemoryLane() {
   return (
     <section
       id="memories"
-      aria-label="Our Memory Lane"
+      aria-label="To growing older, together"
       className="torn-top torn-bottom scroll-mt-16 relative bg-mint px-5 py-16 sm:px-8 sm:py-20 lg:py-28"
     >
       <div className="stamp-ring absolute right-[8%] top-8 hidden sm:block" aria-hidden="true">
         Memories<br />Express
       </div>
       <div className="mx-auto max-w-[1120px]">
-        <SectionHeading title="Our Memory Lane" />
+        <SectionHeading title="To growing older, together" />
+        <p id="memory-carousel-help" className="sr-only">
+          Use the previous and next buttons, swipe, or press the left and right arrow keys to explore all six memories.
+        </p>
 
         <div
           role="region"
           aria-roledescription="carousel"
           aria-label="Shared memories"
+          aria-describedby="memory-carousel-help"
+          tabIndex={0}
           onKeyDown={handleKeyDown}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
@@ -181,27 +186,25 @@ export function MemoryLane() {
                     className="w-[92%] shrink-0 px-2 py-3 sm:w-1/2 lg:w-1/4"
                   >
                     <figure
-                      className={`${memory.rotation} relative h-full bg-paper p-2 pb-5 shadow-[0_10px_25px_rgb(7_53_111_/_12%)] transition duration-200 hover:-translate-y-1 hover:rotate-0 motion-reduce:transform-none motion-reduce:transition-none`}
+                      className={`${memory.rotation} relative h-full bg-paper p-2 pb-3 shadow-[0_10px_25px_rgb(7_53_111_/_12%)] transition duration-200 hover:-translate-y-1 hover:rotate-0 motion-reduce:transform-none motion-reduce:transition-none`}
                     >
                       <span
                         className={`absolute -top-2 left-1/2 z-10 h-4 w-12 -translate-x-1/2 -rotate-2 ${memory.tape}`}
                         aria-hidden="true"
                       />
-                      <Image
-                        src="/europe-hero-768.webp"
-                        width={768}
-                        height={512}
-                        loading="lazy"
-                        decoding="async"
-                        alt="A cropped watercolor collage of European landmarks and travel keepsakes"
-                        className="aspect-[4/3] w-full object-cover saturate-[0.82]"
-                        style={{ objectPosition: memory.objectPosition }}
-                      />
-                      <figcaption className="px-2 pt-4 text-center text-navy">
-                        <span className="display-font block text-xl font-bold leading-tight">{memory.caption}</span>
-                        <span className="mt-1 block text-[10px] font-extrabold uppercase tracking-[0.11em] text-navy/65">
-                          {memory.note}
-                        </span>
+                      <div className="relative aspect-[4/3] overflow-hidden bg-seafoam/60">
+                        <Image
+                          src={memory.src}
+                          alt={memory.alt}
+                          fill
+                          sizes="(min-width: 1024px) 260px, (min-width: 640px) 50vw, 92vw"
+                          loading="lazy"
+                          decoding="async"
+                          className="object-cover"
+                        />
+                      </div>
+                      <figcaption className="flex min-h-[4.75rem] items-center justify-center px-2 pt-3 text-center text-navy">
+                        <span className="display-font block text-xl font-bold leading-tight sm:text-[1.35rem]">{memory.caption}</span>
                       </figcaption>
                     </figure>
                   </article>
