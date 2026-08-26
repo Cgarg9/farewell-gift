@@ -233,6 +233,7 @@ export function Destinations() {
         <SectionHeading
           title="12 Months, 12 Destinations"
           description="A dotted route through twelve places, with two city-specific ideas waiting inside every card."
+          showHeart={false}
         />
         <p className="-mt-5 mb-4 flex items-center justify-center gap-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-navy/65 sm:hidden">
           Swipe to explore all 12 <ArrowRight size={13} aria-hidden="true" />

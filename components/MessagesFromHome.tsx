@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Heart, MailOpen, X } from "lucide-react";
 import { SectionHeading } from "./SectionHeading";
@@ -8,11 +9,12 @@ type HomeMessage = {
   initials: string;
   name: string;
   relationship: string;
+  image: string;
+  imageAlt: string;
   preview: string;
   paragraphs: string[];
   signature?: string;
   tint: string;
-  isPlaceholder?: boolean;
 };
 
 const messages: HomeMessage[] = [
@@ -20,6 +22,8 @@ const messages: HomeMessage[] = [
     initials: "TD",
     name: "Tejal Di",
     relationship: "From home",
+    image: "/messages/letter-tejal.webp",
+    imageAlt: "Tejal and Rupal smiling beside an elephant",
     preview: "I don’t think it has fully sunk in yet that you’re actually in France 🥹",
     paragraphs: [
       "I don’t think it has fully sunk in yet that you’re actually in France 🥹 We’re all sooooooooo happy and proud of you 😘 Moving to a whole new country and going after something you’ve worked so hard for is such a big, brave thing to do, my baby!",
@@ -34,6 +38,8 @@ const messages: HomeMessage[] = [
     initials: "W",
     name: "Wuzmal",
     relationship: "From home",
+    image: "/messages/letter-wuzmal.webp",
+    imageAlt: "Wuzmal and Rupal dressed up together at a celebration",
     preview: "Wishing you the absolute best as you step into this beautiful new chapter!",
     paragraphs: [
       "Hey love,",
@@ -48,6 +54,8 @@ const messages: HomeMessage[] = [
     initials: "KS",
     name: "KS",
     relationship: "From home",
+    image: "/messages/letter-ks.webp",
+    imageAlt: "KS and Rupal smiling together for a café selfie",
     preview: "Go make memories eat all the croissants you want and remember",
     paragraphs: [
       "Go make memories eat all the croissants you want and remember",
@@ -59,13 +67,19 @@ const messages: HomeMessage[] = [
     tint: "bg-[#e2edf8]",
   },
   {
-    initials: "+1",
-    name: "One more letter",
-    relationship: "Reserved",
-    preview: "Waiting for the final message.",
-    paragraphs: [],
+    initials: "A",
+    name: "Aayushi",
+    relationship: "From home",
+    image: "/messages/letter-aayushi.webp",
+    imageAlt: "Aayushi and Rupal sitting together and smiling",
+    preview: "BONJOUR LILLE, MY PALLU IS HERE! 🩷",
+    paragraphs: [
+      "BONJOUR LILLE, MY PALLU IS HERE! 🩷",
+      "Words can’t suffice how proud I am of you! Every win of yours feels personal and I don’t think anyone deserves this more than you! You have always been an inspiration and now looking at you, ticking off one more dream? Uff feels unreal.",
+      "You got this baby! This new journey is waiting for you and I’m with you through all of it…good/bad/everything! Let’s do thisss with the biggest smile, a little nervous mind and an empty memory box! Can’t wait to see your journey and be by your side through it all 🩷🧿 love you, miss you, hug you😘",
+    ],
+    signature: "-Aayushi",
     tint: "bg-[#fff0d3]",
-    isPlaceholder: true,
   },
 ];
 
@@ -104,7 +118,7 @@ export function MessagesFromHome() {
       <div className="mx-auto max-w-[1080px]">
         <SectionHeading
           title="Messages From Home"
-          description="Four envelopes from home—three to open now, and one saved for the final message."
+          description="Four envelopes from home—each one ready to open whenever you need a little love."
         />
         <p className="-mt-5 mb-4 flex items-center justify-center gap-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-navy/65 sm:hidden">
           Swipe to see every letter <ArrowRight size={13} aria-hidden="true" />
@@ -117,13 +131,21 @@ export function MessagesFromHome() {
           {messages.map((item, index) => {
             const cardContents = (
               <>
-                <span className={`relative grid aspect-[1.55] place-items-center overflow-hidden rounded-lg ${item.tint}`} aria-hidden="true">
-                  <span className="absolute inset-3 rounded-lg border-2 border-dashed border-white/65" />
-                  <MailOpen className="absolute left-4 top-4 text-navy/25" size={30} strokeWidth={1.5} />
-                  <span className="display-font grid size-20 place-items-center rounded-full border border-white/80 bg-paper/80 text-4xl font-bold text-navy shadow-sm">
+                <span className={`relative block aspect-[4/3] overflow-hidden rounded-lg ${item.tint}`}>
+                  <Image
+                    src={item.image}
+                    alt={item.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 255px, (min-width: 640px) 46vw, 82vw"
+                    className="object-cover transition duration-500 group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
+                  />
+                  <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-navy/45 to-transparent" aria-hidden="true" />
+                  <span className="display-font absolute bottom-3 left-3 grid size-9 place-items-center rounded-full border border-white/80 bg-paper/90 text-base font-bold text-navy shadow-sm" aria-hidden="true">
                     {item.initials}
                   </span>
-                  <Heart className="absolute bottom-4 right-4 text-coral/80" size={21} fill="currentColor" />
+                  <span className="absolute bottom-3 right-3 grid size-9 place-items-center rounded-full bg-paper/90 text-coral shadow-sm" aria-hidden="true">
+                    <Heart size={18} fill="currentColor" />
+                  </span>
                 </span>
 
                 <span className="block px-1 pb-1 pt-3">
@@ -133,7 +155,7 @@ export function MessagesFromHome() {
                   <span className="display-font mt-0.5 block text-3xl font-bold leading-none text-navy">{item.name}</span>
                   <span className="mt-2 block min-h-[4.5rem] line-clamp-3 text-sm leading-6 text-navy/75">“{item.preview}”</span>
                   <span className="mt-3 flex min-h-8 items-center justify-between border-t border-navy/15 pt-2 text-[9px] font-extrabold uppercase tracking-[0.15em] text-navy">
-                    {item.isPlaceholder ? "Waiting for your message" : <>Read full message <ArrowRight size={13} aria-hidden="true" /></>}
+                    Read full message <ArrowRight size={13} aria-hidden="true" />
                   </span>
                 </span>
               </>
@@ -141,23 +163,14 @@ export function MessagesFromHome() {
 
             return (
               <article key={item.name} className="min-w-0 snap-start">
-                {item.isPlaceholder ? (
-                  <div
-                    aria-label="Reserved for one more letter"
-                    className="h-full w-full rounded-xl border border-dashed border-[#d5cbae] bg-[#fff9e9]/75 p-3 text-left shadow-[0_10px_25px_rgb(7_53_111_/_8%)]"
-                  >
-                    {cardContents}
-                  </div>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={(event) => openMessage(index, event.currentTarget)}
-                    aria-haspopup="dialog"
-                    className="group h-full w-full rounded-xl border border-[#d5cbae] bg-[#fff9e9] p-3 text-left shadow-[0_10px_25px_rgb(7_53_111_/_12%)] transition duration-200 hover:-translate-y-1 hover:rotate-[0.3deg] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-navy motion-reduce:transform-none motion-reduce:transition-none"
-                  >
-                    {cardContents}
-                  </button>
-                )}
+                <button
+                  type="button"
+                  onClick={(event) => openMessage(index, event.currentTarget)}
+                  aria-haspopup="dialog"
+                  className="group h-full w-full rounded-xl border border-[#d5cbae] bg-[#fff9e9] p-3 text-left shadow-[0_10px_25px_rgb(7_53_111_/_12%)] transition duration-200 hover:-translate-y-1 hover:rotate-[0.3deg] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-navy motion-reduce:transform-none motion-reduce:transition-none"
+                >
+                  {cardContents}
+                </button>
               </article>
             );
           })}

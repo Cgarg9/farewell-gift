@@ -10,7 +10,7 @@ export function ClosingWish() {
         <h2 className="display-font text-[clamp(3.2rem,7vw,5rem)] font-bold leading-[0.88] text-navy">Go Make Stories<br />Worth Telling <Heart className="inline text-coral" size={27} aria-hidden="true" /></h2>
         <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-navy/68 sm:text-base">Take the long way, order the unfamiliar thing, call home often, and keep a little room in your bag for every story you collect.</p>
       </div>
-      <div className="relative -mx-5 bg-navy px-5 py-8 text-white sm:-mx-8 sm:px-8"><p className="display-font text-xl sm:text-2xl">We’ll be cheering for you—from here to every adventure and back. <span className="text-coral" aria-hidden="true">♡</span></p><Mail className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-t-lg bg-paper p-2 text-coral" size={46} aria-hidden="true" /></div>
+      <div className="relative -mx-5 bg-navy px-5 py-8 text-white sm:-mx-8 sm:px-8"><p className="display-font text-xl sm:text-2xl">We’ll be cheering for you—from here to every adventure and back.</p><Mail className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-t-lg bg-paper p-2 text-coral" size={46} aria-hidden="true" /></div>
     </footer>
   );
 }
